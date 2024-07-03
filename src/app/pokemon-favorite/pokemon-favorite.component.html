@@ -1,1 +1,12 @@
-<p>pokemon-favorite works!</p>
+<div *@If="favoritePokemon.length > 0; else noFavorites">
+  <h2>Favorite Pokémon</h2>
+  <ul>
+    <li *@For="let pokemonName of favoritePokemon">
+      <span>{{ pokemonName }}</span>
+      <button (click)="removeFromFavorites(pokemonName)">Remove</button>
+    </li>
+  </ul>
+</div>
+<ng-template #noFavorites>
+  <p>No Pokémon in favorites.</p>
+</ng-template>
