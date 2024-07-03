@@ -14,6 +14,7 @@ import { MoveDetails } from '../models/move-details';
 import { MatInputModule } from '@angular/material/input';
 import { PokeHelperService } from '../services/poke-helper.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { FavoriteService } from '../services/favorite.service'; 
 
 @Component({
   selector: 'app-pokemon-details',
@@ -42,8 +43,9 @@ export class PokemonDetailComponent implements OnInit {
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  isFavorite = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private favoriteService: FavoriteService) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();
@@ -51,6 +53,7 @@ export class PokemonDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.calculateTotalStats();
+    this.checkFavoriteStatus();
   }
 
   getColorForType(type: string): string {
@@ -70,6 +73,19 @@ export class PokemonDetailComponent implements OnInit {
     this.pokemon.stats.forEach(stat => {
       this.total = this.total + stat.base_stat;
     });
+  }
+
+  toggleFavorite(): void {
+    if (this.isFavorite) {
+      this.favoriteService.removeFromFavorites(this.pokemon.id.toString()); // Utilisation de l'id du Pokémon pour la gestion des favoris
+    } else {
+      this.favoriteService.addToFavorites(this.pokemon.id.toString()); // Utilisation de l'id du Pokémon pour la gestion des favoris
+    }
+    this.isFavorite = !this.isFavorite;
+  }
+
+  checkFavoriteStatus(): void {
+    this.isFavorite = this.favoriteService.isFavorite(this.pokemon.id.toString()); // Vérifie si le Pokémon est un favori au chargement
   }
   
 }

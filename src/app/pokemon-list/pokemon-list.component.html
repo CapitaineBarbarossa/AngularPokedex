@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content" (window:scroll)="onScroll()">
     <mat-form-field>
-      <mat-label>Search Pokémon</mat-label>
+      <mat-label>Rechercher un Pokémon</mat-label>
       <input matInput [matAutocomplete]="auto" [(ngModel)]="selectedPokemon" placeholder="Filter a pokémon from the list">
       <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput($event)">
         <mat-icon>cancel</mat-icon>
@@ -24,14 +24,7 @@
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
-              <mat-card-subtitle>
-                @for (poke of pokemon.types; track poke) {
-                  <div>
-                    <img [src]="getTypeRetroImageUrl(poke.type.name)" alt="Type du Pokémon">
-                  </div>
-                }
-              </mat-card-subtitle>
-              <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
+              <img [src]="pokemon.sprites.front_default" alt="Image du pokémon {{pokemon.name}}">
             </mat-card-title-group>
           </mat-card-header>
           <mat-card-content>
@@ -51,13 +44,6 @@
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
-              <mat-card-subtitle>
-                @for (poke of pokemon.types; track poke) {
-                  <div>
-                    <img [src]="getTypeRetroImageUrl(poke.type.name)" alt="Type du Pokémon">
-                  </div>
-                }
-              </mat-card-subtitle>
               <img [src]="pokemon.sprites.front_default" alt="Image du pokémon {{pokemon.name}}">
             </mat-card-title-group>
           </mat-card-header>

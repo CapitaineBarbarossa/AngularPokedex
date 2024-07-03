@@ -7,11 +7,9 @@
       <button mat-menu-item routerLink="/home">Home</button>
       <button mat-menu-item routerLink="/pokedex">Pokedex</button>
     </mat-menu>
-    <button mat-button>
-      <a routerLink="/home"><img class="logo" src="../../assets/pokeapi_logo.png" alt="Icone site"></a>
-    </button>
     <span [ngClass]="{'selected': selectedSpan === 'home'}"><a mat-button routerLink="/home" (click)="selectSpan('home')">Home</a></span>
     <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" (click)="selectSpan('pokedex')">Pokedex</a></span>
+    <span><a mat-button routerLink="/favorites" routerLinkActive="active">Favoris</a></span>
     <span><a mat-button routerLink="login" routerLinkActive="active">Connexion</a></span>
     <span class="spacer"></span>
     <a href="https://github.com/CapitaineBarbarossa/AngularPokedex">

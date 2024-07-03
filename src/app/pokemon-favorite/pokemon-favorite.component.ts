@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-pokemon-favorite',
   standalone: true,
+    imports: [
+    CommonModule,
+  ],
   templateUrl: './pokemon-favorite.component.html',
   styleUrls: ['./pokemon-favorite.component.scss']
 })

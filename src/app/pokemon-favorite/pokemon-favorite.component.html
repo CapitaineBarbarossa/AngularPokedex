@@ -1,7 +1,7 @@
-<div *@If="favoritePokemon.length > 0; else noFavorites">
+<div *ngIf="favoritePokemon.length > 0; else noFavorites">
   <h2>Favorite Pokémon</h2>
   <ul>
-    <li *@For="let pokemonName of favoritePokemon">
+    <li *ngFor="let pokemonName of favoritePokemon">
       <span>{{ pokemonName }}</span>
       <button (click)="removeFromFavorites(pokemonName)">Remove</button>
     </li>

@@ -4,6 +4,10 @@
       <mat-card-title-group>
         <mat-card-title class="title"># {{ pokemon.id }} - {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
       </mat-card-title-group>
+            <button mat-icon-button [color]="isFavorite ? 'warn' : ''" (click)="toggleFavorite()">
+        <mat-icon>{{ isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+      </button>
+
     </mat-card-header>
     <div class="pokemon-info-container">
       <img class="pokemon-artwork"
@@ -21,14 +25,6 @@
           <span class="title-total-stat"> Total: {{ total }} </span>
         </div>
       </div>
-      <mat-card-content class="pokemon-info-container">
-        <span class="title-type">Types:</span>
-        @for (poke of pokemon.types; track poke) {
-          <div clas="type-info">
-            <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Type du Pokémon">
-          </div>
-        }
-      </mat-card-content>
     </mat-card>
   </div>
   
