@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <h2>formControl simple</h2>
+    <div>
+      <label for="login">Login: </label>
+      <input id="login" type="text" [formControl]="login">
+      <p > login value  = {{ login.value}}</p>
+    </div>
+    <div>
+      <label for="password">password: </label>
+      <input id="password" type="text" [formControl]="password">
+      <p >  password value  =  {{ password.value}}</p>
+    </div>
+    <button type="button" (click)="updateName()">envoyer</button>
+  </div>
+  <div>
+    <h2>formGroup</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <label for="first-name">First Name: </label>
+      <input id="first-name" type="text" formControlName="firstName">
+      <label for="last-name">Last Name: </label>
+      <input id="last-name" type="text" formControlName="lastName">
+<!--      <button type="submit" >envoyer</button>-->
+      <p>Complete the form to enable button.</p>
+      <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    </form>
+  </div>
+
+</div>
+
